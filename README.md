@@ -1,8 +1,19 @@
 [![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/s7OBVfDF)
-| Name           | NRP        | Kelas     |
-| ---            | ---        | ----------|
-| xxxxxxx | xxxxxx | Jaringan Komputer (x) |
-| xxxxxxx | xxxxxx | Jaringan Komputer (x) |
+| Name                 | NRP        | Kelas                 |
+| -------------------- | ---------- | --------------------- |
+| Nuril Qolbi Zam Zami | 5025221296 | Jaringan Komputer (A) |
+| Alvin Zanua Putra    | 5025231064 | Jaringan Komputer (A) |
+
+
+# INI TAMBAHAN________________________________________________________________
+
+### LINK EXCEL
+    https://docs.google.com/spreadsheets/d/1vWKrSwMVmna7snJVwqiB_1zfyTIO4V2M4wk4YMxP8Mw/edit?usp=sharing
+
+### LINK FIGMA 
+    https://www.figma.com/design/t1t3tUZBNAtzaMsePE2G3R/JARKOM?node-id=0-1&t=jWHtJaTWfy8XW47i-1
+
+# INI TAMBAHAN END_____________________________________________________________
 
 
 ## Put your topology config image here!
