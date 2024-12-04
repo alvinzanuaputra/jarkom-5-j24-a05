@@ -4,8 +4,7 @@
 | Nuril Qolbi Zam Zami | 5025221296 | Jaringan Komputer (A) |
 | Alvin Zanua Putra | 5025231064 | Jaringan Komputer (A) |
 
-
-____________________________
+---
 
 # INI TAMBAHAN
 
@@ -17,9 +16,9 @@ ____________________________
 
     https://www.figma.com/design/t1t3tUZBNAtzaMsePE2G3R/JARKOM?node-id=0-1&t=jWHtJaTWfy8XW47i-1
 
-
 # INI TAMBAHAN END
-____________________________
+
+---
 
 ## Put your topology config image here!
 
@@ -59,7 +58,11 @@ netmask 255.255.255.252
 - Agasa
 
 ```bash
-auto eth0iface eth0 inet staticaddress 10.6.0.2netmask 255.255.255.252gateway 10.44.0.1
+auto eth0
+iface eth0 inet static
+address 10.6.0.2
+netmask 255.255.255.252
+gateway 10.6.0.1
 
 #A2
 auto eth1
@@ -77,37 +80,61 @@ netmask 255.255.252.0
 - Ran
 
 ```bash
-auto eth0iface eth0 inet staticaddress 10.6.4.2netmask 255.255.252.0gateway 10.6.4.1
+auto eth0
+iface eth0 inet static
+address 10.6.4.2
+netmask 255.255.252.0
+gateway 10.6.4.1
 ```
 
 - Shinici
 
 ```bash
-auto eth0iface eth0 inet staticaddress 10.6.1.2netmask 255.255.255.128gateway 10.44.1.1
+auto eth0
+iface eth0 inet static
+address 10.6.1.2
+netmask 255.255.255.128
+gateway 10.6.1.1
 ```
 
 - Haibara
 
 ```bash
-auto eth0iface eth0 inet staticaddress 10.6.8.2netmask 255.255.248.0gateway 10.44.8.1
+auto eth0
+iface eth0 inet static
+address 10.6.8.2
+netmask 255.255.248.0
+gateway 10.6.8.1
 ```
 
 - Conan
 
 ```bash
-auto eth0iface eth0 inet staticaddress 10.6.1.3netmask 255.255.255.128gateway 10.6.1.1
+auto eth0
+iface eth0 inet static
+address 10.6.1.3
+netmask 255.255.255.128
+gateway 10.6.1.1
 ```
 
 - Megure
 
 ```bash
-auto eth0iface eth0 inet staticaddress 10.6.0.22netmask 255.255.255.252gateway 10.6.0.21
+auto eth0
+iface eth0 inet static
+address 10.6.0.22
+netmask 255.255.255.252
+gateway 10.6.0.21
 ```
 
 - Sonoko
 
 ```bash
-auto eth0iface eth0 inet staticaddress 10.6.0.10netmask 255.255.255.252gateway 10.6.0.9
+auto eth0
+iface eth0 inet static
+address 10.6.0.10
+netmask 255.255.255.252
+gateway 10.6.0.9
 ```
 
 - Kazuha
@@ -132,8 +159,16 @@ auto eth2
 iface eth2 inet static
 address 10.6.0.9
 netmask 255.255.255.252
-#Ayumi
-auto eth0iface eth0 inet staticaddress 10.6.0.14netmask 255.255.255.252gateway 10.6.0.13
+```
+
+- Ayumi
+
+```bash
+auto eth0
+iface eth0 inet static
+address 10.6.0.14
+netmask 255.255.255.252
+gateway 10.6.0.13
 
 # A7
 
@@ -181,16 +216,20 @@ auto eth0
 iface eth0 inet static
 address 10.6.2.3
 netmask 255.255.255.0
-gateway 10.44.2.2
+gateway 10.6.2.2
 ```
 
 - Genta
 
 ```bash
-auto eth0iface eth0 inet staticaddress 10.6.2.2netmask 255.255.255.0gateway 10.6.2.2
+auto eth0
+iface eth0 inet static
+paddress 10.6.2.2
+netmask 255.255.255.0
+gateway 10.6.2.2
 ```
 
-### Routing
+### Routing (taruh bashrc)
 
 - Kazuha
 
@@ -217,13 +256,13 @@ route add -net 10.6.0.8 netmask 255.255.255.252 gw 10.6.0.6 #A4
 ```bash
 route add -net 0.0.0.0 netmask 0.0.0.0 gw 10.6.0.13
 route add -net 10.6.0.20 netmask 255.255.255.252 gw 10.6.0.18 #A9
-route add -net 10.6.2.0 netmask 255.255.255.0 gw 10.6.0.18 #A10
+route add -net 10.6.2.0 netmask 255.255.255.0 gw 10.6.0.18 # A10
 ```
 
 - Heiji
 
 ```bash
-route add -net 10.6.2.0 netmask 255.255.255.0 gw 10.6.0.14 #A10
+route add -net 10.6.2.0 netmask 255.255.255.0 gw 10.6.0.14 # A10
 route add -net 10.6.0.16 netmask 255.255.255.252 gw 10.6.0.14 #A8
 route add -net 10.6.0.20 netmask 255.255.255.252 gw 10.6.0.14 #A9
 route add -net 10.6.1.0 netmask 255.255.255.128 gw 10.6.0.14 #A7
@@ -231,6 +270,31 @@ route add -net 10.6.0.4 netmask 255.255.255.252 gw 10.6.0.2 #A2
 route add -net 10.6.8.0 netmask 255.255.248.0 gw 10.6.0.2 #A3
 route add -net 10.6.0.8 netmask 255.255.255.252 gw 10.6.0.2 #A4
 route add -net 10.6.4.0 netmask 255.255.252.0 gw 10.6.0.2 #A5
+```
+
+### Installasi
+
+- Heiji
+
+```bash
+# DHCP relay
+echo 'nameserver 192.168.122.1' > /etc/resolv.conf
+
+apt update
+apt install netcat -y
+apt install isc-dhcp-relay -y
+
+echo '
+SERVERS="10.6.1.106"
+INTERFACES="eth0 eth1 eth2 eth3"
+OPTIONS=""
+' > /etc/default/isc-dhcp-relay
+
+# Jangan lupa uncomment
+# nano /etc/sysctl.conf
+# net.ipv4.ip_forward=1
+
+service isc-dhcp-relay restart
 ```
 
 ## Soal 1
@@ -243,7 +307,11 @@ route add -net 10.6.4.0 netmask 255.255.252.0 gw 10.6.0.2 #A5
 
 - Screenshot
 
-  `Put your screenshot in here`
+Sebelum :
+
+![alt text](/assets/images/NOMOR1-1.jpg)
+
+Setelah :
 
 - Configuration
 
@@ -254,7 +322,7 @@ iptables -t nat -A POSTROUTING -o eth0 -j SNAT --to-source "$IPETH0" -s 10.6.0.0
 
 - Explanation
 
-  `Put your explanation in here`
+  `Perintah ini menggunakan iptables untuk mengonfigurasi SNAT (Source Network Address Translation) agar memungkinkan perangkat dalam jaringan dengan rentang IP 10.6.0.0/20 untuk mengakses internet melalui eth0. SNAT diperlukan untuk mengubah alamat IP sumber dari perangkat di jaringan lokal menjadi alamat IP dari antarmuka eth0, yang biasanya memiliki akses ke internet. Tanpa MASQUERADE, kita spesifik mengatur IP sumber pada eth0.`
 
 <br>
 
@@ -280,7 +348,7 @@ iptables -A INPUT -p tcp -j DROP
 
 - Explanation
 
-  `Put your explanation in here`
+`Aturan iptables ini: Mengizinkan koneksi TCP yang datang ke port 1744. Menolak semua paket TCP lainnya. Dengan urutan ini, pengecualian port 1744 diterapkan terlebih dahulu sebelum aturan drop paket lainnya.`
 
 <br>
 
@@ -306,7 +374,7 @@ iptables -A INPUT -p tcp --dport 22 -j DROP
 
 - Explanation
 
-  `Put your explanation in here`
+  `Aturan ini mengizinkan hanya Ran (IP 10.6.4.2) untuk melakukan koneksi SSH (port 22) ke Web Server. Semua koneksi SSH lainnya akan ditolak.`
 
 <br>
 
@@ -335,7 +403,7 @@ iptables -A INPUT -p tcp --dport 443 -j DROP
 
 - Explanation
 
-  `Put your explanation in here`
+  `Menggunakan modul time di iptables untuk menentukan hari dan jam spesifik ketika koneksi diizinkan. Jika permintaan datang di luar waktu tersebut, koneksi akan ditolak.`
 
 <br>
 
@@ -360,7 +428,7 @@ iptables -A INPUT -p tcp -s 10.6.8.0/21 --dport 443 -m time --weekdays Sat,Sun -
 
 - Explanation
 
-  `Put your explanation in here`
+  `Subnet Haibara (10.6.8.0/21) diberikan izin akses tanpa pembatasan waktu pada hari Sabtu dan Minggu untuk port 80 dan 443. Aturan ini ditambahkan khusus untuk subnet tersebut, tanpa mengganggu konfigurasi lainnya.`
 
 <br>
 
@@ -385,7 +453,7 @@ iptables -A INPUT -p tcp --dport 443 -m time --weekdays Fri --timestart 11:00 --
 
 - Explanation
 
-  `Put your explanation in here`
+  `Modul time kembali digunakan untuk memblokir akses selama waktu tertentu, yaitu saat ibadah Jumat. Aturan ini mencegah perangkat lain mengakses port 80 dan 443 pada waktu tersebut.`
 
 <br>
 
@@ -409,7 +477,7 @@ iptables -A INPUT  -j LOG --log-level debug --log-prefix 'Package Dropped' -m li
 
 - Explanation
 
-  `Put your explanation in here`
+  `Menggunakan fitur LOG dari iptables untuk mencatat informasi tentang paket yang ditolak. Parameter --log-level menentukan tingkat detail log, dan --log-prefix menambahkan teks identifikasi ke log.`
 
 <br>
 
@@ -433,7 +501,7 @@ iptables -A INPUT -p icmp ! -s 10.6.2.0/23 -d 10.6.2.0/23 -j DROP
 
 - Explanation
 
-  `Put your explanation in here`
+  `Dengan aturan ini, semua paket ICMP (ping) yang berasal dari luar subnet tertentu akan ditolak. Ini memastikan bahwa subnet tersebut tidak dapat di-ping dari perangkat luar selama masa pemeliharaan.`
 
 <br>
 
@@ -447,7 +515,7 @@ iptables -A INPUT -p icmp ! -s 10.6.2.0/23 -d 10.6.2.0/23 -j DROP
 
 - Screenshot
 
-  `Put your screenshot in here`
+  `Modul recent digunakan untuk mendeteksi aktivitas port scan. Jika sebuah IP melakukan lebih dari 10 scan dalam waktu 60 detik, IP tersebut akan diblokir sementara, melindungi server dari potensi serangan.`
 
 - Configuration
 
@@ -523,7 +591,7 @@ Senoko' > /var/www/html/index.html
 
 - Explanation
 
-  `Put your explanation in here`
+  `Round-Robin diterapkan untuk mendistribusikan permintaan klien secara bergantian antara dua server (Conan dan Sonoko) pada port 80 dan 443. Untuk mengimplementasikan hal ini, pengaturan Apache Web Server atau mekanisme load balancer seperti HAProxy dapat digunakan. JMeter digunakan untuk mengevaluasi kinerja dan membandingkan dengan metode lainnya.`
 
 <br>
 
