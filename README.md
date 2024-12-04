@@ -35,7 +35,7 @@ ____________________________
 
 ## Put your IP route here!
 
-### Konfigurasi Router
+### Subnetting
 
 - Heiji
 
