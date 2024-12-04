@@ -1,39 +1,237 @@
 [![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/s7OBVfDF)
-| Name                 | NRP        | Kelas                 |
+| Name | NRP | Kelas |
 | -------------------- | ---------- | --------------------- |
 | Nuril Qolbi Zam Zami | 5025221296 | Jaringan Komputer (A) |
-| Alvin Zanua Putra    | 5025231064 | Jaringan Komputer (A) |
+| Alvin Zanua Putra | 5025231064 | Jaringan Komputer (A) |
 
 
-# INI TAMBAHAN________________________________________________________________
+____________________________
+
+# INI TAMBAHAN
 
 ### LINK EXCEL
+
     https://docs.google.com/spreadsheets/d/1vWKrSwMVmna7snJVwqiB_1zfyTIO4V2M4wk4YMxP8Mw/edit?usp=sharing
 
-### LINK FIGMA 
+### LINK FIGMA
+
     https://www.figma.com/design/t1t3tUZBNAtzaMsePE2G3R/JARKOM?node-id=0-1&t=jWHtJaTWfy8XW47i-1
 
-# INI TAMBAHAN END_____________________________________________________________
 
+# INI TAMBAHAN END
+____________________________
 
 ## Put your topology config image here!
 
-`Put image in here`
-
+![alt text](/assets/images/topology.jpg)
 
 ## Put your VLSM calculation here!
 
-`Put VLSM calculation in here`
+![alt text](/assets/images/vlsm.jpg)
 
 <b>Tree:</b>
 
-`Put VLSM tree in here`
+![alt text](/assets/images/tree.jpg)
 
 ## Put your IP route here!
 
+### Konfigurasi Router
 
-`Put IP route in here`
+- Heiji
 
+```bash
+auto eth0
+iface eth0 inet dhcp
+
+#A1
+auto eth1
+iface eth1 inet static
+address 10.6.0.1
+netmask 255.255.255.252
+
+#A6
+auto eth2
+iface eth2 inet static
+address 10.6.0.13
+netmask 255.255.255.252
+```
+
+- Agasa
+
+```bash
+auto eth0iface eth0 inet staticaddress 10.6.0.2netmask 255.255.255.252gateway 10.44.0.1
+
+#A2
+auto eth1
+iface eth1 inet static
+address 10.6.0.5
+netmask 255.255.255.252
+
+#A5
+auto eth2
+iface eth2 inet static
+address 10.6.4.1
+netmask 255.255.252.0
+```
+
+- Ran
+
+```bash
+auto eth0iface eth0 inet staticaddress 10.6.4.2netmask 255.255.252.0gateway 10.6.4.1
+```
+
+- Shinici
+
+```bash
+auto eth0iface eth0 inet staticaddress 10.6.1.2netmask 255.255.255.128gateway 10.44.1.1
+```
+
+- Haibara
+
+```bash
+auto eth0iface eth0 inet staticaddress 10.6.8.2netmask 255.255.248.0gateway 10.44.8.1
+```
+
+- Conan
+
+```bash
+auto eth0iface eth0 inet staticaddress 10.6.1.3netmask 255.255.255.128gateway 10.6.1.1
+```
+
+- Megure
+
+```bash
+auto eth0iface eth0 inet staticaddress 10.6.0.22netmask 255.255.255.252gateway 10.6.0.21
+```
+
+- Sonoko
+
+```bash
+auto eth0iface eth0 inet staticaddress 10.6.0.10netmask 255.255.255.252gateway 10.6.0.9
+```
+
+- Kazuha
+
+```bash
+auto eth0
+iface eth0 inet static
+address 10.6.0.6
+netmask 255.255.255.252
+gateway 10.6.0.5
+
+# A3
+
+auto eth1
+iface eth1 inet static
+address 10.6.8.1
+netmask 255.255.248.0
+
+# A4
+
+auto eth2
+iface eth2 inet static
+address 10.6.0.9
+netmask 255.255.255.252
+#Ayumi
+auto eth0iface eth0 inet staticaddress 10.6.0.14netmask 255.255.255.252gateway 10.6.0.13
+
+# A7
+
+auto eth1
+iface eth1 inet static
+address 10.6.1.1
+netmask 255.255.255.128
+
+# A8
+
+auto eth2
+iface eth2 inet static
+address 10.6.0.17
+netmask 255.255.255.252
+```
+
+- Mitshuhiko
+
+```bash
+auto eth0
+iface eth0 inet static
+address 10.6.0.18
+netmask 255.255.255.252
+gateway 10.6.0.17
+
+# A9
+
+auto eth1
+iface eth1 inet static
+address 10.6.0.21
+netmask 255.255.255.252
+
+# A10
+
+auto eth2
+iface eth2 inet static
+address 10.6.2.2
+netmask 255.255.255.0
+```
+
+- Kogoro
+
+```bash
+auto eth0
+iface eth0 inet static
+address 10.6.2.3
+netmask 255.255.255.0
+gateway 10.44.2.2
+```
+
+- Genta
+
+```bash
+auto eth0iface eth0 inet staticaddress 10.6.2.2netmask 255.255.255.0gateway 10.6.2.2
+```
+
+### Routing
+
+- Kazuha
+
+```bash
+route add -net 0.0.0.0 netmask 0.0.0.0 gw 10.6.0.5
+```
+
+- Mitsuhiko
+
+```bash
+route add -net 0.0.0.0 netmask 0.0.0.0 gw 10.6.0.17
+```
+
+- Agasa
+
+```bash
+route add -net 0.0.0.0 netmask 0.0.0.0 gw 10.6.0.1
+route add -net 10.6.8.0 netmask 255.255.248.0 gw 10.6.0.6 #A3
+route add -net 10.6.0.8 netmask 255.255.255.252 gw 10.6.0.6 #A4
+```
+
+- Ayumi
+
+```bash
+route add -net 0.0.0.0 netmask 0.0.0.0 gw 10.6.0.13
+route add -net 10.6.0.20 netmask 255.255.255.252 gw 10.6.0.18 #A9
+route add -net 10.6.2.0 netmask 255.255.255.0 gw 10.6.0.18 #A10
+```
+
+- Heiji
+
+```bash
+route add -net 10.6.2.0 netmask 255.255.255.0 gw 10.6.0.14 #A10
+route add -net 10.6.0.16 netmask 255.255.255.252 gw 10.6.0.14 #A8
+route add -net 10.6.0.20 netmask 255.255.255.252 gw 10.6.0.14 #A9
+route add -net 10.6.1.0 netmask 255.255.255.128 gw 10.6.0.14 #A7
+route add -net 10.6.0.4 netmask 255.255.255.252 gw 10.6.0.2 #A2
+route add -net 10.6.8.0 netmask 255.255.248.0 gw 10.6.0.2 #A3
+route add -net 10.6.0.8 netmask 255.255.255.252 gw 10.6.0.2 #A4
+route add -net 10.6.4.0 netmask 255.255.252.0 gw 10.6.0.2 #A5
+```
 
 ## Soal 1
 
@@ -45,15 +243,18 @@
 
 - Screenshot
 
-    `Put your screenshot in here`
+  `Put your screenshot in here`
 
 - Configuration
 
-    `Put your configuration in here`
+```bash
+IPETH0="$(ip -br a | grep eth0 | awk '{print $NF}' | cut -d'/' -f1)"
+iptables -t nat -A POSTROUTING -o eth0 -j SNAT --to-source "$IPETH0" -s 10.6.0.0/20
+```
 
 - Explanation
 
-    `Put your explanation in here`
+  `Put your explanation in here`
 
 <br>
 
@@ -67,16 +268,19 @@
 
 - Screenshot
 
-    `Put your screenshot in here`
+  `Put your screenshot in here`
 
 - Configuration
 
-    `Put your configuration in here`
+```bash
+#Shinichi
+iptables -A INPUT -p tcp -d 10.6.1.2 --dport 1744 -j ACCEPT
+iptables -A INPUT -p tcp -j DROP
+```
 
 - Explanation
 
-    `Put your explanation in here`
-
+  `Put your explanation in here`
 
 <br>
 
@@ -90,16 +294,19 @@
 
 - Screenshot
 
-    `Put your screenshot in here`
+  `Put your screenshot in here`
 
 - Configuration
 
-    `Put your configuration in here`
+```bash
+#Semua Web Server
+iptables -A INPUT -p tcp --dport 22 -s 10.6.4.2 -j ACCEPT
+iptables -A INPUT -p tcp --dport 22 -j DROP
+```
 
 - Explanation
 
-    `Put your explanation in here`
-
+  `Put your explanation in here`
 
 <br>
 
@@ -113,16 +320,22 @@
 
 - Screenshot
 
-    `Put your screenshot in here`
+  `Put your screenshot in here`
 
 - Configuration
 
-    `Put your configuration in here`
+```bash
+#Semua Web Server
+iptables -A INPUT -p tcp --dport 80 -m time --weekdays Mon,Tue,Wed,Thu,Fri --timestart 07:00 --timestop 19:00 -j ACCEPT
+iptables -A INPUT -p tcp --dport 443 -m time --weekdays Mon,Tue,Wed,Thu,Fri --timestart 07:00 --timestop 19:00 -j ACCEPT
+
+iptables -A INPUT -p tcp --dport 80 -j DROP
+iptables -A INPUT -p tcp --dport 443 -j DROP
+```
 
 - Explanation
 
-    `Put your explanation in here`
-
+  `Put your explanation in here`
 
 <br>
 
@@ -136,16 +349,18 @@
 
 - Screenshot
 
-    `Put your screenshot in here`
+  `Put your screenshot in here`
 
 - Configuration
 
-    `Put your configuration in here`
+```bash
+iptables -A INPUT -p tcp -s 10.6.8.0/21 --dport 80 -m time --weekdays Sat,Sun -j ACCEPT
+iptables -A INPUT -p tcp -s 10.6.8.0/21 --dport 443 -m time --weekdays Sat,Sun -j ACCEPT
+```
 
 - Explanation
 
-    `Put your explanation in here`
-
+  `Put your explanation in here`
 
 <br>
 
@@ -159,16 +374,18 @@
 
 - Screenshot
 
-    `Put your screenshot in here`
+  `Put your screenshot in here`
 
 - Configuration
 
-    `Put your configuration in here`
+```bash
+iptables -A INPUT -p tcp --dport 80 -m time --weekdays Fri --timestart 11:00 --timestop 13:00 -j DROP
+iptables -A INPUT -p tcp --dport 443 -m time --weekdays Fri --timestart 11:00 --timestop 13:00 -j DROP
+```
 
 - Explanation
 
-    `Put your explanation in here`
-
+  `Put your explanation in here`
 
 <br>
 
@@ -182,16 +399,17 @@
 
 - Screenshot
 
-    `Put your screenshot in here`
+  `Put your screenshot in here`
 
 - Configuration
 
-    `Put your configuration in here`
+```bash
+iptables -A INPUT  -j LOG --log-level debug --log-prefix 'Package Dropped' -m limit --limit 1/second --limit-burst 10
+```
 
 - Explanation
 
-    `Put your explanation in here`
-
+  `Put your explanation in here`
 
 <br>
 
@@ -205,22 +423,23 @@
 
 - Screenshot
 
-    `Put your screenshot in here`
+  `Put your screenshot in here`
 
 - Configuration
 
-    `Put your configuration in here`
+```bash
+iptables -A INPUT -p icmp ! -s 10.6.2.0/23 -d 10.6.2.0/23 -j DROP
+```
 
 - Explanation
 
-    `Put your explanation in here`
-
+  `Put your explanation in here`
 
 <br>
 
 ## Soal 9
 
-> Untuk meningkatkan keamanan, setiap Web Server harus bisa melakukan blok terhadap IP yang melakukan scanning port dalam jumlah yang tidak wajar (maksimal 10 scan port) di dalam selang waktu 1 menit. 
+> Untuk meningkatkan keamanan, setiap Web Server harus bisa melakukan blok terhadap IP yang melakukan scanning port dalam jumlah yang tidak wajar (maksimal 10 scan port) di dalam selang waktu 1 menit.
 
 > _To enhance security, each Web Server must be able to block IP addresses that perform an excessive number of port scans (a maximum of 10 port scans) within a 1-minute interval._
 
@@ -228,16 +447,20 @@
 
 - Screenshot
 
-    `Put your screenshot in here`
+  `Put your screenshot in here`
 
 - Configuration
 
-    `Put your configuration in here`
+```bash
+iptables -A INPUT -m recent --name portscan --update --seconds 60 --hitcount 10 -j DROP
+iptables -A FORWARD -m recent --name portscan --update --seconds 60 --hitcount 10 -j DROP
+iptables -A INPUT -m recent --name portscan --set -j ACCEPT
+iptables -A FORWARD -m recent --name portscan --set -j ACCEPT
+```
 
 - Explanation
 
-    `Put your explanation in here`
-
+  `Put your explanation in here`
 
 <br>
 
@@ -251,19 +474,63 @@
 
 - Screenshot
 
-    `Put your screenshot in here`
+  `Put your screenshot in here`
 
 - Configuration
 
-    `Put your configuration in here`
+```bash
+echo '
+Listen 80
+Listen 443
+
+<IfModule ssl_module>
+        Listen 443
+</IfModule>
+
+<IfModule mod_gnutls.c>
+        Listen 443
+</IfModule>
+' > /etc/apache2/ports.conf
+```
+
+```bash
+#Conan
+echo '# Conan
+Conan' > /var/www/html/index.html
+```
+
+```bash
+#Senoko
+echo '# Senoko
+Senoko' > /var/www/html/index.html
+```
+
+```bash
+#Conan
+<VirtualHost *:80>
+    ServerName 10.6.0.10
+    DocumentRoot /var/www/html
+    ErrorLog ${APACHE_LOG_DIR}/error.log
+    CustomLog ${APACHE_LOG_DIR}/access.log combined
+</VirtualHost>
+<VirtualHost *:443>
+    ServerName 10.6.0.10
+    DocumentRoot /var/www/html
+    ErrorLog ${APACHE_LOG_DIR}/error.log
+    CustomLog ${APACHE_LOG_DIR}/access.log combined
+</VirtualHost>
+```
 
 - Explanation
 
-    `Put your explanation in here`
-
+  `Put your explanation in here`
 
 <br>
-  
+
 ## Problems
 
 ## Revisions (if any)
+
+```
+
+```
