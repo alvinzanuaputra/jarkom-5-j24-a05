@@ -461,13 +461,19 @@ date --set="2024-12-5 14:00:00
 
 - Screenshot
 
-  `Put your screenshot in here`
+- Berhasil
+
+![alt text](image-16.png)
+
+- Gagal
+
+![alt text](image-15.png)
 
 - Configuration
 
 ```bash
-iptables -A INPUT -p tcp -s 10.6.8.0/21 --dport 80 -m time --weekdays Sat,Sun -j ACCEPT
-iptables -A INPUT -p tcp -s 10.6.8.0/21 --dport 443 -m time --weekdays Sat,Sun -j ACCEPT
+iptables -I INPUT -p tcp -s 10.6.8.0/21 --dport 80 -m time --weekdays Sat,Sun -j ACCEPT
+iptables -I INPUT -p tcp -s 10.6.8.0/21 --dport 443 -m time --weekdays Sat,Sun -j ACCEPT
 ```
 
 - Explanation
@@ -486,13 +492,37 @@ iptables -A INPUT -p tcp -s 10.6.8.0/21 --dport 443 -m time --weekdays Sat,Sun -
 
 - Screenshot
 
-  `Put your screenshot in here`
+Konan Berhasil
+
+![alt text](image-18.png)
+
+Konan Gagal
+
+![alt text](image-22.png)
+
+Senoko Berhasil
+
+![alt text](image-19.png)
+
+Senoko Gagal
+
+![alt text](image-23.png)
+
+Megure Berhasil
+
+![alt text](image-20.png)
+
+Megure Gagal
+
+![alt text](image-24.png)
+
+
 
 - Configuration
 
 ```bash
-iptables -A INPUT -p tcp --dport 80 -m time --weekdays Fri --timestart 11:00 --timestop 13:00 -j DROP
-iptables -A INPUT -p tcp --dport 443 -m time --weekdays Fri --timestart 11:00 --timestop 13:00 -j DROP
+iptables -I INPUT -p tcp --dport 80 -m time --weekdays Fri --timestart 11:00 --timestop 13:00 -j DROP
+iptables -I INPUT -p tcp --dport 443 -m time --weekdays Fri --timestart 11:00 --timestop 13:00 -j DROP
 ```
 
 - Explanation
@@ -511,17 +541,31 @@ iptables -A INPUT -p tcp --dport 443 -m time --weekdays Fri --timestart 11:00 --
 
 - Screenshot
 
-  `Put your screenshot in here`
+![alt text](image-27.png)
 
 - Configuration
 
+di node
 ```bash
 iptables -A INPUT  -j LOG --log-level debug --log-prefix 'Package Dropped' -m limit --limit 1/second --limit-burst 10
 ```
+di router
+```bash
+iptables -A FORWARD  -j LOG --log-level debug --log-prefix 'Package Dropped' -m limit --limit 1/second --limit-burst 10
+```
+
+
+
+testing di agasa
+```bash
+iptables -L -v -n 
+```
+
+
 
 - Explanation
 
-  `Menggunakan fitur LOG dari iptables untuk mencatat informasi tentang paket yang ditolak. Parameter --log-level menentukan tingkat detail log, dan --log-prefix menambahkan teks identifikasi ke log.`
+`Menggunakan fitur LOG dari iptables untuk mencatat informasi tentang paket yang ditolak. Parameter --log-level menentukan tingkat detail log, dan --log-prefix menambahkan teks identifikasi ke log., test no 8 dulu untuk dapat output dari log baru dapat output nomer 7`
 
 <br>
 
@@ -535,17 +579,24 @@ iptables -A INPUT  -j LOG --log-level debug --log-prefix 'Package Dropped' -m li
 
 - Screenshot
 
-  `Put your screenshot in here`
+Di Haibara
+
+![alt text](image-25.png)
+
+Di Ran
+
+![alt text](image-26.png)
 
 - Configuration
 
 ```bash
-iptables -A INPUT -p icmp ! -s 10.6.2.0/23 -d 10.6.2.0/23 -j DROP
+# blokir Selain Ran
+iptables -A INPUT -p icmp ! -s 10.6.4.2/22 -d 10.6.4.2/22 -j DROP
 ```
 
 - Explanation
 
-  `Dengan aturan ini, semua paket ICMP (ping) yang berasal dari luar subnet tertentu akan ditolak. Ini memastikan bahwa subnet tersebut tidak dapat di-ping dari perangkat luar selama masa pemeliharaan.`
+`Dengan aturan ini, semua paket ICMP (ping) yang berasal dari luar subnet tertentu akan ditolak. Ini memastikan bahwa subnet tersebut tidak dapat di-ping dari perangkat luar selama masa pemeliharaan.`
 
 <br>
 
@@ -559,11 +610,12 @@ iptables -A INPUT -p icmp ! -s 10.6.2.0/23 -d 10.6.2.0/23 -j DROP
 
 - Screenshot
 
-  `Modul recent digunakan untuk mendeteksi aktivitas port scan. Jika sebuah IP melakukan lebih dari 10 scan dalam waktu 60 detik, IP tersebut akan diblokir sementara, melindungi server dari potensi serangan.`
+![alt text](image-28.png)
 
 - Configuration
 
 ```bash
+# Webserver
 iptables -A INPUT -m recent --name portscan --update --seconds 60 --hitcount 10 -j DROP
 iptables -A FORWARD -m recent --name portscan --update --seconds 60 --hitcount 10 -j DROP
 iptables -A INPUT -m recent --name portscan --set -j ACCEPT
@@ -591,6 +643,7 @@ iptables -A FORWARD -m recent --name portscan --set -j ACCEPT
 - Configuration
 
 ```bash
+# Di Conan 
 echo '
 Listen 80
 Listen 443
@@ -603,6 +656,8 @@ Listen 443
         Listen 443
 </IfModule>
 ' > /etc/apache2/ports.conf
+
+service apache2 restart
 ```
 
 ```bash
@@ -631,6 +686,11 @@ Senoko' > /var/www/html/index.html
     ErrorLog ${APACHE_LOG_DIR}/error.log
     CustomLog ${APACHE_LOG_DIR}/access.log combined
 </VirtualHost>
+```
+
+```bash
+# Sininchi
+
 ```
 
 - Explanation
