@@ -224,9 +224,9 @@ gateway 10.6.2.2
 ```bash
 auto eth0
 iface eth0 inet static
-paddress 10.6.2.2
+address 10.6.2.2
 netmask 255.255.255.0
-gateway 10.6.2.2
+gateway 10.6.2.1
 ```
 
 ### Routing (taruh bashrc)
@@ -247,54 +247,52 @@ route add -net 0.0.0.0 netmask 0.0.0.0 gw 10.6.0.17
 
 ```bash
 route add -net 0.0.0.0 netmask 0.0.0.0 gw 10.6.0.1
-route add -net 10.6.8.0 netmask 255.255.248.0 gw 10.6.0.6 #A3
-route add -net 10.6.0.8 netmask 255.255.255.252 gw 10.6.0.6 #A4
+route add -net 10.6.8.0 netmask 255.255.248.0 gw 10.6.0.6
+#A3
+route add -net 10.6.0.8 netmask 255.255.255.252 gw 10.6.0.6
+#A4
 ```
 
 - Ayumi
 
 ```bash
 route add -net 0.0.0.0 netmask 0.0.0.0 gw 10.6.0.13
-route add -net 10.6.0.20 netmask 255.255.255.252 gw 10.6.0.18 #A9
-route add -net 10.6.2.0 netmask 255.255.255.0 gw 10.6.0.18 # A10
+route add -net 10.6.0.20 netmask 255.255.255.252 gw 10.6.0.18
+#A9
+route add -net 10.6.2.0 netmask 255.255.255.0 gw 10.6.0.18
+# A10
 ```
 
 - Heiji
 
 ```bash
-route add -net 10.6.2.0 netmask 255.255.255.0 gw 10.6.0.14 # A10
-route add -net 10.6.0.16 netmask 255.255.255.252 gw 10.6.0.14 #A8
-route add -net 10.6.0.20 netmask 255.255.255.252 gw 10.6.0.14 #A9
-route add -net 10.6.1.0 netmask 255.255.255.128 gw 10.6.0.14 #A7
-route add -net 10.6.0.4 netmask 255.255.255.252 gw 10.6.0.2 #A2
-route add -net 10.6.8.0 netmask 255.255.248.0 gw 10.6.0.2 #A3
-route add -net 10.6.0.8 netmask 255.255.255.252 gw 10.6.0.2 #A4
-route add -net 10.6.4.0 netmask 255.255.252.0 gw 10.6.0.2 #A5
+route add -net 10.6.2.0 netmask 255.255.255.0 gw 10.6.0.14
+# A10
+route add -net 10.6.0.16 netmask 255.255.255.252 gw 10.6.0.14
+#A8
+route add -net 10.6.0.20 netmask 255.255.255.252 gw 10.6.0.14
+#A9
+route add -net 10.6.1.0 netmask 255.255.255.128 gw 10.6.0.14
+#A7
+route add -net 10.6.0.4 netmask 255.255.255.252 gw 10.6.0.2
+#A2
+route add -net 10.6.8.0 netmask 255.255.248.0 gw 10.6.0.2
+#A3
+route add -net 10.6.0.8 netmask 255.255.255.252 gw 10.6.0.2
+#A4
+route add -net 10.6.4.0 netmask 255.255.252.0 gw 10.6.0.2
+#A5
 ```
 
 ### Installasi
 
-- Heiji
+- Di Semua Node
 
 ```bash
-# DHCP relay
 echo 'nameserver 192.168.122.1' > /etc/resolv.conf
 
 apt update
 apt install netcat -y
-apt install isc-dhcp-relay -y
-
-echo '
-SERVERS="10.6.1.106"
-INTERFACES="eth0 eth1 eth2 eth3"
-OPTIONS=""
-' > /etc/default/isc-dhcp-relay
-
-# Jangan lupa uncomment
-# nano /etc/sysctl.conf
-# net.ipv4.ip_forward=1
-
-service isc-dhcp-relay restart
 ```
 
 ## Soal 1
@@ -313,6 +311,10 @@ Sebelum :
 
 Setelah :
 
+![alt text](image-7.png)
+
+![alt text](image-1.png)
+
 - Configuration
 
 ```bash
@@ -322,7 +324,7 @@ iptables -t nat -A POSTROUTING -o eth0 -j SNAT --to-source "$IPETH0" -s 10.6.0.0
 
 - Explanation
 
-  `Perintah ini menggunakan iptables untuk mengonfigurasi SNAT (Source Network Address Translation) agar memungkinkan perangkat dalam jaringan dengan rentang IP 10.6.0.0/20 untuk mengakses internet melalui eth0. SNAT diperlukan untuk mengubah alamat IP sumber dari perangkat di jaringan lokal menjadi alamat IP dari antarmuka eth0, yang biasanya memiliki akses ke internet. Tanpa MASQUERADE, kita spesifik mengatur IP sumber pada eth0.`
+`Perintah ini menggunakan iptables untuk mengonfigurasi SNAT (Source Network Address Translation) agar memungkinkan perangkat dalam jaringan dengan rentang IP 10.6.0.0/20 untuk mengakses internet melalui eth0. SNAT diperlukan untuk mengubah alamat IP sumber dari perangkat di jaringan lokal menjadi alamat IP dari antarmuka eth0, yang biasanya memiliki akses ke internet. Tanpa MASQUERADE, kita spesifik mengatur IP sumber pada eth0.`
 
 <br>
 
@@ -336,13 +338,15 @@ iptables -t nat -A POSTROUTING -o eth0 -j SNAT --to-source "$IPETH0" -s 10.6.0.0
 
 - Screenshot
 
-  `Put your screenshot in here`
+![alt text](<Screenshot 2024-12-05 171637.png>)
+
+![alt text](image-2.png)
 
 - Configuration
 
 ```bash
 #Shinichi
-iptables -A INPUT -p tcp -d 10.6.1.2 --dport 1744 -j ACCEPT
+iptables -A INPUT -p tcp --dport 1744 -j ACCEPT
 iptables -A INPUT -p tcp -j DROP
 ```
 
@@ -362,19 +366,29 @@ iptables -A INPUT -p tcp -j DROP
 
 - Screenshot
 
-  `Put your screenshot in here`
+Conan - Ran
+
+![alt text](image-3.png)
+
+Senoko - Ran
+
+![alt text](<Screenshot 2024-12-05 173455.png>)
+
+Megure - Ran
+
+![alt text](<Screenshot 2024-12-05 173817.png>)
 
 - Configuration
 
 ```bash
 #Semua Web Server
-iptables -A INPUT -p tcp --dport 22 -s 10.6.4.2 -j ACCEPT
-iptables -A INPUT -p tcp --dport 22 -j DROP
+iptables -A INPUT -p tcp --dport 89 -s 10.6.4.2 -j ACCEPT
+iptables -A INPUT -p tcp --dport 89 -j DROP
 ```
 
 - Explanation
 
-  `Aturan ini mengizinkan hanya Ran (IP 10.6.4.2) untuk melakukan koneksi SSH (port 22) ke Web Server. Semua koneksi SSH lainnya akan ditolak.`
+`Aturan ini mengizinkan hanya Ran (IP 10.6.4.2) untuk melakukan koneksi SSH (port 22) ke Web Server. Semua koneksi SSH lainnya akan ditolak.`
 
 <br>
 
@@ -388,7 +402,29 @@ iptables -A INPUT -p tcp --dport 22 -j DROP
 
 - Screenshot
 
-  `Put your screenshot in here`
+Conan sukses akses
+
+![alt text](image-8.png)
+
+Conan gagal akses
+
+![alt text](image-9.png)
+
+Senoko sukses akses
+
+![alt text](image-12.png)
+
+Senoko gagal akses
+
+![alt text](image-11.png)
+
+Megure sukses akses
+
+![alt text](image-13.png)
+
+Megure gagal akses
+
+![alt text](image-14.png)
 
 - Configuration
 
@@ -401,9 +437,17 @@ iptables -A INPUT -p tcp --dport 80 -j DROP
 iptables -A INPUT -p tcp --dport 443 -j DROP
 ```
 
+setting jam
+
 - Explanation
 
-  `Menggunakan modul time di iptables untuk menentukan hari dan jam spesifik ketika koneksi diizinkan. Jika permintaan datang di luar waktu tersebut, koneksi akan ditolak.`
+`Note: Jika jam / hari berbeda dengan rentang waktu yang telah di set sebelumnya, maka gunakan :`
+
+```bash
+date --set="2024-12-5 14:00:00
+```
+
+`Menggunakan modul time di iptables untuk menentukan hari dan jam spesifik ketika koneksi diizinkan. Jika permintaan datang di luar waktu tersebut, koneksi akan ditolak.`
 
 <br>
 
